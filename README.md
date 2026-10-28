@@ -2,6 +2,8 @@
 
 A reusable Codex skill for comparing resource-heavy architectures with practical, efficient alternatives.
 
+Version: **1.0.0**. The skill version is recorded in `SKILL.md` under `metadata.version`; GitHub releases use matching tags such as `v1.0.0`.
+
 ## Priorities
 
 - Native host services instead of Docker where suitable.

@@ -1,5 +1,7 @@
 ---
 name: architecture-efficiency
+metadata:
+  version: "1.0.0"
 description: Compare existing resource-heavy architectures with efficient alternatives, including native services, lean frontends, compiled backends, SQLite, Caddy and hosting costs. Use for architecture efficiency reviews and side-by-side migration comparisons, not for implementing a rewrite by default.
 ---
 
