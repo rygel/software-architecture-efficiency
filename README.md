@@ -2,9 +2,11 @@
 
 A reusable Codex skill for comparing resource-heavy architectures with practical, efficient alternatives.
 
-Version: **1.2.0**. The skill version is recorded in `SKILL.md` under `metadata.version`; GitHub releases use matching tags such as `v1.2.0`.
+Version: **1.3.0**. The skill version is recorded in `SKILL.md` under `metadata.version`; GitHub releases use matching tags such as `v1.3.0`.
 
 The shared skill selects a **desktop**, **server** or **hybrid** review track from the actual application. Desktop guidance covers installed UIs, local data and distribution. Server guidance covers hosted services and browser applications, concurrency, recovery and hosting. Hybrid reviews apply each track to its own components while sharing evidence and reporting rules.
+
+For desktop clients, the primary objective is **minimal RAM use with no embedded browser or WebView UI**. Electron and Tauri can be analyzed as existing baselines, but are not eligible final desktop targets. Compare non-WebView toolkits using full-application idle/active memory and required behavior; no framework is assumed to be the smallest. This restriction applies to the desktop part of hybrid systems, not browser-delivered server applications.
 
 ## Priorities
 
@@ -48,6 +50,10 @@ Hosting prices are dated research snapshots and must be refreshed before current
 The references link to official product documentation. The decision guide includes a selective synthesis of [Project-Foundations](https://github.com/erophames/Project-Foundations) at a pinned commit, with file-level attribution. This skill does not require that plugin or its workflow.
 
 ## Evaluations
+
+Version 1.3.0 has a [focused independent evaluation on five cases](evaluations/v1.3.0.md) covering the desktop/hybrid constraint, memory-based selection and a browser-app control. All five met the updated rubric in that run; [actual responses](evaluations/responses-v1.3.0.md) are retained. This does not claim eleven new passes or real application RAM benchmarks.
+
+Historical evaluation outcomes apply to their version's rules; the corresponding release tag preserves the original cases and rubric. The 1.3.0 desktop policy supersedes earlier acceptance of WebView-based desktop targets.
 
 Version 1.2.0 adds desktop/server/hybrid routing and a [recorded independent evaluation on ten cases](evaluations/v1.2.0.md), including three new desktop/hybrid cases. All ten met the rubric in that run. The [actual responses](evaluations/responses-v1.2.0.md), shared [case inputs](evaluations/cases.md) and [reviewer rubric](evaluations/rubric.md) are retained.
 
