@@ -2,6 +2,8 @@
 
 A reusable Codex skill for comparing resource-heavy architectures with practical, efficient alternatives.
 
+Read [the rationale](docs/rationale.md) for why the skill prioritizes minimal desktop RAM without WebViews, simpler server architectures, SQLite, Caddy and evidence-backed comparisons, including the tradeoffs and limits behind those choices.
+
 Version: **1.3.0**. The skill version is recorded in `SKILL.md` under `metadata.version`; GitHub releases use matching tags such as `v1.3.0`.
 
 The shared skill selects a **desktop**, **server** or **hybrid** review track from the actual application. Desktop guidance covers installed UIs, local data and distribution. Server guidance covers hosted services and browser applications, concurrency, recovery and hosting. Hybrid reviews apply each track to its own components while sharing evidence and reporting rules.
@@ -35,6 +37,7 @@ The skill can also produce illustrative comparisons when no application is suppl
 
 ## Contents
 
+- [Rationale and design decisions](docs/rationale.md)
 - [Skill instructions](skills/architecture-efficiency/SKILL.md)
 - [Desktop application track](skills/architecture-efficiency/references/desktop.md)
 - [Server application track](skills/architecture-efficiency/references/server.md)
