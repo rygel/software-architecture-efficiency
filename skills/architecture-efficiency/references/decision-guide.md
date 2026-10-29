@@ -23,7 +23,7 @@ Determine whether the dominant cost comes from algorithms, database queries/inde
 
 Compare four choices when relevant: keep current design, tune it, replace the costly component, and simplify the full stack. A native worker or library can be a useful intermediate step, but count FFI, IPC, packaging and failure-handling costs. Prefer a modular application to distributed services when independent deployment and scaling are unnecessary; do not introduce layers or split projects merely to resemble a diagram.
 
-For a bottleneck experiment, use one representative vertical slice that includes its real storage or integration boundary. Benchmark optimized production configurations, document toolchain/build flags and runtime settings, warm-up and cache state, dataset and load. Keep the generator from distorting the system being measured. Report successful throughput and errors alongside latency; a solution that rejects more work has not proven an efficiency gain. Include bounded sustained load and recovery only where needed to resolve a concrete uncertainty. Never weaken durability or remove required behavior to improve a benchmark.
+Use the bounded measurement contract in [report.md](report.md) when an experiment is needed. Never weaken durability or remove required behavior to improve a benchmark.
 
 Go's [diagnostics guide](https://go.dev/doc/diagnostics) provides profiling tools. Rust's [Cargo profiles](https://doc.rust-lang.org/cargo/reference/profiles.html) distinguish development and optimized builds. These are measurement aids, not evidence that a particular language wins.
 
@@ -54,16 +54,14 @@ Use one set of behavioral cases for the database operations, with engine-specifi
 
 Specify a consistent backup mechanism, independent retention and a restore verification. Do not copy only a live main database file and assume it captures WAL data. SQLite documents its [online backup API and alternatives](https://www.sqlite.org/backup.html).
 
-## Native deployment and report handoff
+## Complete-stack compatibility
+
+Check the proposed combination, not just its individual tools. Record framework/features, serialization/reflection, authentication/session model, native extensions/FFI, database driver, OS/CPU and shared-library requirements, persistence/replicas and proxy behavior. Name the evidence and any unresolved constraint. For a material unknown, propose one focused check of the published artifact or integration before declaring the design suitable; do not install a toolchain or create a prototype solely for an analysis.
+
+For .NET 10, Microsoft's [ASP.NET Core Native AOT support table](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/native-aot?view=aspnetcore-10.0) lists MVC and Blazor Server as unsupported. A native-AOT API/worker and a conventional Razor/MVC or Blazor application are distinct candidates; do not combine those labels into an assumed supported stack. Check the selected version, required authentication and other features, publish warnings, and actual published application behavior. Checked 2026-10-29; refresh for the version under review.
+
+## Native deployment handoff
 
 For a native-service proposal, name the executable and target architecture, required shared libraries/runtime, service account, data directory, configuration/secrets, resource bounds, graceful shutdown, restart/logging, Caddy routing, health verification and update/rollback method. Identify what existing deployment machinery supplied and how the proposal preserves those responsibilities. Produce configuration only if implementation is authorized.
 
-Keep the review compact and decision-oriented:
-
-1. State the observed architecture, workload, hard requirements and unknowns with owning file or operational evidence.
-2. Compare keep/tune/focused replacement/full simplification as relevant, including feasibility, resources, cost and behavioral tradeoffs in the same entries.
-3. Recommend a target with acceptance budgets, evidence confidence and triggers for changing it.
-4. Give staged migration and the next smallest measurement or compatibility check, with success criteria and rollback boundaries.
-5. Link source documentation and distinguish upstream guidance, this review's reasoning, published prices and measured results.
-
-When only a general comparison is requested, use clearly labelled scenarios and explain which requirements would select each option. Do not represent a reference architecture as a review of a system that has not been inspected.
+Use [report.md](report.md) for the comparison and migration output; this guide owns feasibility and requirements, not a second reporting format.
