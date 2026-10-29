@@ -1,13 +1,19 @@
 ---
 name: architecture-efficiency
 metadata:
-  version: "1.1.0"
-description: Compare existing resource-heavy architectures with efficient alternatives, including native services, lean frontends, compiled backends, SQLite, Caddy and hosting costs. Use for architecture efficiency reviews and side-by-side migration comparisons, not for implementing a rewrite by default.
+  version: "1.2.0"
+description: Compare resource-heavy desktop, server and hybrid architectures with efficient alternatives. Use for architecture reviews covering native applications and services, UI responsiveness, RAM, databases, deployment and hosting costs, not for implementing a rewrite by default.
 ---
 
 # Architecture efficiency
 
-Produce an evidence-backed comparison of the current architecture and practical alternatives. Favor native host services, compiled backends, SQLite with a PostgreSQL path, lean frontends and Caddy. These preferences guide investigation; they do not prove a rewrite will improve the workload.
+Produce an evidence-backed comparison of the current architecture and practical alternatives. Favor efficient native software, local SQLite where suitable, lean UIs and simple deployment. For server components, consider native services, Caddy and an explicit PostgreSQL path. These preferences guide investigation; they do not prove a rewrite will improve the workload.
+
+## Select the application track
+
+- **Desktop:** an installed user-facing application. Load [desktop.md](references/desktop.md) for UI/event-loop responsiveness, process-tree resources, local data, platform integration and distribution. Do not introduce server infrastructure or hosting costs into a local-only application.
+- **Server:** a hosted service, worker, API or browser-delivered application. Load [server.md](references/server.md) for request/job concurrency, reliability, deployment and hosting. A web frontend is part of this track even when its assets are static.
+- **Hybrid:** a desktop client with a remote service. Apply both tracks only to their owning components; attribute device, browser/WebView and backend resources separately. Include the offline/synchronization contract and client/server version compatibility. Infer the track from inspected deployment evidence, not language or framework names; ask only if a consequential boundary remains unclear.
 
 ## Review workflow
 
@@ -20,8 +26,9 @@ Produce an evidence-backed comparison of the current architecture and practical 
 ## Load only relevant references
 
 - [decision-guide.md](references/decision-guide.md): requirements, bottleneck diagnosis, compatibility, language engineering guidance, database and native deployment considerations. Includes attributed Project-Foundations guidance without requiring its plugin or tool suites.
-- [alternatives.md](references/alternatives.md): candidate frontend and infrastructure options when comparing replacements.
-- [hosting.md](references/hosting.md): deployment models, cost components and historical price research when hosting matters. Refresh official prices, market, tax basis, contract/renewal and stock before current recommendations. Check existing capacity first.
+- Desktop/server track references own application-specific checks and route to suitable alternatives; do not load the other track unless the system has those components.
+- [alternatives.md](references/alternatives.md): browser/server replacement candidates, when relevant to the server track.
+- [hosting.md](references/hosting.md): server deployment models, cost components and historical price research when hosting matters. Refresh official prices, market, tax basis, contract/renewal and stock before current recommendations. Check existing capacity first.
 - [report.md](references/report.md): canonical evidence labels, measurement contract and comparison output. Scale it to the request; mark irrelevant dimensions once rather than filling tables with boilerplate.
 
 ## Decision rules

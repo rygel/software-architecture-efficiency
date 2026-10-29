@@ -2,7 +2,9 @@
 
 A reusable Codex skill for comparing resource-heavy architectures with practical, efficient alternatives.
 
-Version: **1.1.0**. The skill version is recorded in `SKILL.md` under `metadata.version`; GitHub releases use matching tags such as `v1.1.0`.
+Version: **1.2.0**. The skill version is recorded in `SKILL.md` under `metadata.version`; GitHub releases use matching tags such as `v1.2.0`.
+
+The shared skill selects a **desktop**, **server** or **hybrid** review track from the actual application. Desktop guidance covers installed UIs, local data and distribution. Server guidance covers hosted services and browser applications, concurrency, recovery and hosting. Hybrid reviews apply each track to its own components while sharing evidence and reporting rules.
 
 ## Priorities
 
@@ -10,7 +12,7 @@ Version: **1.1.0**. The skill version is recorded in `SKILL.md` under `metadata.
 - Compiled backends such as Go, Rust and compatible .NET Native AOT applications.
 - Lean frontends: static output, server-rendered HTML and focused browser interaction.
 - SQLite first, with an explicit migration path to PostgreSQL.
-- Caddy for reverse proxy and TLS.
+- Caddy for server reverse proxy and TLS where applicable.
 - Lower CPU and RAM use, faster execution and realistic hosting costs.
 
 Recommendations must preserve required behavior and distinguish measurements, estimates, published specifications and unknowns. Language or deployment preferences alone do not establish a performance improvement.
@@ -32,6 +34,8 @@ The skill can also produce illustrative comparisons when no application is suppl
 ## Contents
 
 - [Skill instructions](skills/architecture-efficiency/SKILL.md)
+- [Desktop application track](skills/architecture-efficiency/references/desktop.md)
+- [Server application track](skills/architecture-efficiency/references/server.md)
 - [Alternative solutions](skills/architecture-efficiency/references/alternatives.md)
 - [Requirements and decision guide](skills/architecture-efficiency/references/decision-guide.md)
 - [Measurement definitions and comparison report](skills/architecture-efficiency/references/report.md)
@@ -44,5 +48,7 @@ Hosting prices are dated research snapshots and must be refreshed before current
 The references link to official product documentation. The decision guide includes a selective synthesis of [Project-Foundations](https://github.com/erophames/Project-Foundations) at a pinned commit, with file-level attribution. This skill does not require that plugin or its workflow.
 
 ## Evaluations
+
+Version 1.2.0 adds desktop/server/hybrid routing and a [recorded independent evaluation on ten cases](evaluations/v1.2.0.md), including three new desktop/hybrid cases. All ten met the rubric in that run. The [actual responses](evaluations/responses-v1.2.0.md), shared [case inputs](evaluations/cases.md) and [reviewer rubric](evaluations/rubric.md) are retained.
 
 Version 1.1.0 includes a [recorded independent evaluation](evaluations/v1.1.0.md) on seven synthetic architecture cases, with [case inputs](evaluations/cases.md), a [reviewer rubric](evaluations/rubric.md) and [actual responses](evaluations/responses-v1.1.0.md). All seven met the rubric in that run. This checks analyst behavior on those scenarios; it is not an application benchmark or proof of general reliability.

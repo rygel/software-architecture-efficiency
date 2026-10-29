@@ -14,18 +14,18 @@ Before comparing numbers, record the hardware/VM, CPU architecture and sharing m
 
 | Metric | Definition needed for a fair comparison |
 | --- | --- |
-| Server memory | State units and accounting: process RSS, proportional set size (PSS), cgroup accounting or whole-host use. Include child processes and relevant services. Define idle state and peak as the maximum observed over the stated window and sampling interval, not an assumed lifetime maximum. Record swap and cache treatment where material. Do not sum unsynchronized peaks or equate RSS sums with unique physical memory. |
+| Process/host memory | State units and accounting: private bytes, working set, process RSS, proportional set size (PSS), cgroup accounting or whole-host use. Include child processes and relevant services. Define idle state and peak as the maximum observed over the stated window and sampling interval, not an assumed lifetime maximum. Record swap and cache treatment where material. Do not sum unsynchronized peaks or equate RSS sums with unique physical memory. |
 | CPU | State CPU-seconds per successful operation or utilization with the core/capacity denominator and window. Separate burst results from sustained capacity and note throttling or contention. |
 | Throughput and latency | State offered and successful work rates, error/rejection/timeout rate, client/server measurement boundary, units, sample count and p50/p95. Include failures alongside latency and explain timeout treatment; lower latency caused by dropping work is not a win. |
-| Browser | Fix device/browser and user journey. Report network transfer and JS execution separately; use consistent heap or browser-process memory accounting. A JS heap figure is not total browser RAM. Include the interaction/offline behavior being preserved. |
+| UI/browser/WebView | Fix device, display, browser/renderer and user journey. Distinguish input-to-visible response, frame timing and startup from request latency. Report network transfer and JS execution separately when present. A JS heap or main-process figure is not full browser/desktop process-tree memory. Include the interaction/offline behavior being preserved; use the selected track for platform-specific measurements. |
 | Startup and build | Separate cold/warm startup, readiness and build/publish time and peak resources. Development servers and unoptimized binaries are not production comparison baselines. |
-| Storage and cost | Separate durable data, indexes, WAL/logs, backup retention and deploy artifacts. Cost must cover the same region, availability, traffic, persistence and recovery needs; show billing period, currency, taxes and commitment. |
+| Storage and cost | Separate durable data, indexes, WAL/logs, backups and installed/deployed artifacts. Server cost must cover equivalent region, availability, traffic and recovery. Desktop comparisons include distribution/support and device costs when relevant; do not invent a hosting bill for a local app. Show billing period, currency, taxes and commitment for priced costs. |
 
 The Linux kernel documents [RSS/PSS and process accounting](https://www.kernel.org/doc/html/latest/filesystems/proc.html). Use the target platform's equivalent metric rather than silently mixing definitions. Choose a bounded representative slice for a new experiment; avoid measuring every dimension by default.
 
 ## Compact report
 
-1. **Scope and constraints:** inspected sources, current component map, workload, hard requirements, acceptance budgets and unknowns. Label proposed budgets as proposals. State whether evidence describes a live system, supplied snapshot or illustrative scenario.
+1. **Scope and constraints:** inspected sources, desktop/server/hybrid track and component boundaries, workload, hard requirements, acceptance budgets and unknowns. Label proposed budgets as proposals. State whether evidence describes a live system, supplied snapshot or illustrative scenario. For hybrid systems, report device and backend costs separately before combining anything.
 2. **Comparison:** use the table below for relevant options, keeping tradeoffs and evidence visible together. Cover complete-stack compatibility and feature parity before ranking efficiency.
 
 | Option | Requirement/compatibility verdict | Resource and speed evidence | Recurring cost | Migration/operations cost and tradeoffs | Decision and next check |

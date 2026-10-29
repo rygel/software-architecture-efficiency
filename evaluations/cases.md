@@ -47,3 +47,21 @@ Snapshot: Supplied Python production trace: requests spend 85% of elapsed time w
 Request: Choose a fast, low-memory stack and say how much money migrating will save.
 
 Snapshot: Only a dependency list is available: Next.js, Python, Docker, PostgreSQL and Redis. Deployment topology, product workflows, utilization, bills, data size, availability and workload are unknown. A pasted hosting table from 2024 advertises a EUR 3/month plan with no current stock, contract, tax, backup or bandwidth evidence. Migration budget and team skills are unspecified.
+
+## Case 08
+
+Request: Compare efficient desktop alternatives for our invoice application and say whether the proposed migration proves a RAM improvement.
+
+Snapshot: Electron app installed on Windows, macOS and Linux. It works entirely offline with local SQLite, keyboard navigation, a screen-reader workflow, file dialogs, printing and signed updates. No remote API or hosted component exists. Supplied idle measurements on the same Windows device: Electron full process tree including GPU/renderer/helpers is 620 MiB private working set over a 10-minute idle window. A Tauri experiment reports 45 MiB for its Rust main process only; WebView/GPU processes were omitted. Installer download is 120 MB for Electron and 8 MB for the experiment; no readiness, interaction or feature-parity tests were run. The proposal calls Tauri a fully native-widget UI because its core uses Rust. The owner wants lower RAM and comparable desktop behavior, with no request to add a server.
+
+## Case 09
+
+Request: Decide whether moving this desktop tool from WPF to Qt or a web-based architecture is the best efficiency fix.
+
+Snapshot: Windows-only WPF inventory application with local SQLite, no remote service, and Windows file-association and accessibility requirements. A supplied trace shows the UI thread synchronously waits six seconds on a search query each time the search box changes. The query plan scans a large unindexed table. CPU use while idle is low. No full-process memory baseline, compiled-alternative benchmark or migration budget exists. No cross-platform requirement exists. The team maintains C# and WPF; it has no Qt/C++ experience. An existing native installer stores user data outside the installation directory; no change to that data format is requested.
+
+## Case 10
+
+Request: Simplify this application's architecture while preserving all requirements.
+
+Snapshot: Tauri desktop client with a Rust core and WebView UI, local SQLite drafts, six-hour offline use and later synchronization. The remote Go API runs on two Linux hosts behind Caddy and uses PostgreSQL for shared account transactions and automatic database failover. OAuth user identity and conflict resolution are part of the sync contract. Clients can remain on the previous release for a month; the backend must remain compatible with them. No comparable desktop/backend memory baselines or complete bills are provided. One proposal replaces both local and remote storage with a SQLite file shared across machines and claims every part of the application will then need no server. Another proposal retains the topology and optimizes one measured component after profiling. Review device and service responsibilities as part of your comparison.

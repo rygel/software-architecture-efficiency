@@ -10,7 +10,7 @@ Read repository and deployment evidence before asking for information. Record un
 | --- | --- | --- |
 | Product behavior | Main user journeys, authentication/authorization, uploads, search, background jobs, API consumers and integration contracts | A replacement must retain the behavior that matters. Fewer dependencies alone is insufficient. |
 | Workload | Normal and peak request rates, active users, read/write mix, payload sizes, data growth, job duration, burst and sustained work | CPU-bound computation, IO wait and browser interaction need different remedies. |
-| User experience | Offline needs, local editing state, latency sensitivity, accessibility, supported devices and browser memory | Server-rendered HTML is a strong candidate for many apps, but network round trips can be unsuitable for a rich editor. |
+| User experience | Offline/local editing, input responsiveness, startup, accessibility, supported devices and UI/browser memory | Desktop and remote interaction costs differ; preserve the user journey when moving work between them. |
 | Resources and budget | Existing CPU/RAM/disk utilization, hosting bill, acceptable build resources and operator time | Runtime efficiency, engineering cost and actual bill savings are separate outcomes. |
 | Reliability | Acceptable downtime and data loss, recovery time, backup retention, multi-host needs and isolation | A single native process or SQLite file does not replace replication or failover requirements. |
 | Delivery constraints | OS/CPU architecture, deployment permissions, team skills, supported libraries and upgrade obligations | A theoretically efficient language may have an expensive or unsupported integration path. |
@@ -58,10 +58,10 @@ Specify a consistent backup mechanism, independent retention and a restore verif
 
 Check the proposed combination, not just its individual tools. Record framework/features, serialization/reflection, authentication/session model, native extensions/FFI, database driver, OS/CPU and shared-library requirements, persistence/replicas and proxy behavior. Name the evidence and any unresolved constraint. For a material unknown, propose one focused check of the published artifact or integration before declaring the design suitable; do not install a toolchain or create a prototype solely for an analysis.
 
-For .NET 10, Microsoft's [ASP.NET Core Native AOT support table](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/native-aot?view=aspnetcore-10.0) lists MVC and Blazor Server as unsupported. A native-AOT API/worker and a conventional Razor/MVC or Blazor application are distinct candidates; do not combine those labels into an assumed supported stack. Check the selected version, required authentication and other features, publish warnings, and actual published application behavior. Checked 2026-10-29; refresh for the version under review.
+Apply the framework-specific checks in the selected [desktop](desktop.md) or [server](server.md) track. A restriction on an ASP.NET feature does not establish the publishing support of a desktop UI framework, and a native core does not establish that a WebView UI uses native controls.
 
 ## Native deployment handoff
 
-For a native-service proposal, name the executable and target architecture, required shared libraries/runtime, service account, data directory, configuration/secrets, resource bounds, graceful shutdown, restart/logging, Caddy routing, health verification and update/rollback method. Identify what existing deployment machinery supplied and how the proposal preserves those responsibilities. Produce configuration only if implementation is authorized.
+Identify what the current packaging/deployment supplies and how its responsibilities survive the change. Desktop distribution and local-data details belong to [desktop.md](desktop.md); hosted service operations belong to [server.md](server.md). Produce installers, configuration or services only if implementation is authorized.
 
 Use [report.md](report.md) for the comparison and migration output; this guide owns feasibility and requirements, not a second reporting format.
