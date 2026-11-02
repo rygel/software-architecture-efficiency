@@ -1,6 +1,6 @@
 # Software Architecture Efficiency
 
-A reusable Codex skill for comparing resource-heavy architectures with practical, efficient alternatives.
+A reusable agent skill for Codex, Claude Code and OpenCode for comparing resource-heavy architectures with practical, efficient alternatives.
 
 Read [the rationale](docs/rationale.md) for why the skill prioritizes minimal desktop RAM without WebViews, simpler server architectures, SQLite, Caddy and evidence-backed comparisons, including the tradeoffs and limits behind those choices.
 
@@ -23,13 +23,21 @@ Recommendations must preserve required behavior and distinguish measurements, es
 
 ## Install
 
-Copy the entire `skills/architecture-efficiency` directory into your Codex skills directory, normally `~/.codex/skills/`. On Windows, this is normally `%USERPROFILE%\.codex\skills\`.
+Copy the entire `skills/architecture-efficiency` directory into the skills directory of your tool. On Windows, `~` is `%USERPROFILE%`.
 
-Keep `SKILL.md`, `agents/` and `references/` together. If updating an existing installation, inspect and preserve local changes before replacing it. Start a new chat if the skill is not yet listed.
+| Tool | All projects | One project | Start it by name |
+| --- | --- | --- | --- |
+| Codex | `~/.agents/skills/` | `.agents/skills/` | `$architecture-efficiency`, or pick it from `/skills` |
+| Claude Code | `~/.claude/skills/` | `.claude/skills/` | `/architecture-efficiency` |
+| OpenCode | `~/.config/opencode/skills/`, or either user directory above | `.opencode/skills/`, or either project directory above | Ask for the skill by name |
+
+Sources: [Codex](https://learn.chatgpt.com/docs/build-skills), [Claude Code](https://code.claude.com/docs/en/skills), [OpenCode](https://opencode.ai/docs/skills).
+
+Keep `SKILL.md`, `agents/` and `references/` together. `agents/openai.yaml` holds optional OpenAI interface metadata. If updating an existing installation, inspect and preserve local changes before replacing it. Start a new chat if the skill is not yet listed.
 
 ## Use
 
-Example request:
+Example request, using the Codex form:
 
 > Use $architecture-efficiency to review this project. Compare the existing stack, tuning it, replacing expensive components and a simpler native stack. Include performance evidence, RAM, hosting costs, feature tradeoffs and a staged migration plan.
 

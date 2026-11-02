@@ -2,7 +2,7 @@
 name: architecture-efficiency
 metadata:
   version: "1.3.0"
-description: Compare resource-heavy architectures with efficient alternatives. Desktop reviews prioritize minimal RAM and no embedded browser or WebView UI; server reviews cover native services, databases, deployment and hosting. Use for comparisons, not implementing a rewrite by default.
+description: Use when reviewing or comparing a software architecture for RAM, CPU, speed, hosting cost or operational simplicity, including oversized stacks, Electron, Tauri or other WebView desktop apps, removing Docker, Redis or other services, deciding whether to rewrite a slow or memory-heavy application in another language or toolkit, SQLite versus PostgreSQL, and choosing a host. Not for ordinary feature work, debugging, writing Dockerfiles or carrying out a migration.
 ---
 
 # Architecture efficiency
@@ -13,19 +13,19 @@ Produce an evidence-backed comparison of the current architecture and practical 
 
 - **Desktop:** an installed user-facing application. Prioritize the lowest demonstrated RAM use that preserves required behavior, with no embedded browser/WebView UI. Load [desktop.md](references/desktop.md) for eligibility, memory measurement, local data and distribution. Do not introduce server infrastructure or hosting costs into a local-only application.
 - **Server:** a hosted service, worker, API or browser-delivered application. Load [server.md](references/server.md) for request/job concurrency, reliability, deployment and hosting. A web frontend is part of this track even when its assets are static.
-- **Hybrid:** a desktop client with a remote service. Apply the desktop RAM/no-WebView requirements to the installed client and server guidance to remote components. Inspect an existing WebView as baseline evidence, not an eligible target. Attribute client and backend resources separately and preserve offline/synchronization and version compatibility. Infer the track from deployment evidence, not language or framework names; ask only if a consequential boundary remains unclear.
+- **Hybrid:** a desktop client with a remote service. Apply the desktop RAM/no-WebView requirements to the installed client and server guidance to remote components. Inspect an existing WebView as baseline evidence, not an eligible target. When the installed client embeds a browser or WebView, the comparison includes a conditional non-WebView client option with its full-application RAM check, whether or not the request or its proposals mention one. Attribute client and backend resources separately and preserve offline/synchronization and version compatibility. Infer the track from deployment evidence, not language or framework names; ask only if a consequential boundary remains unclear.
 
 ## Review workflow
 
 1. Inspect owning source, deployment and operational evidence. Establish required behavior, workload, resource budgets, reliability and team/platform constraints. Record unknowns; ask only for information that changes the decision. When no system is supplied, label comparisons as illustrative scenarios.
 2. Identify the dominant costs before choosing replacements. Compare keeping, tuning, replacing one costly component and simplifying the stack as relevant. Preserve required behavior, security, isolation and recovery. Include migration cost and operator effort.
-3. Check the complete candidate stack with [decision-guide.md](references/decision-guide.md): framework, libraries, runtime, database driver, CPU/OS, persistence and deployment must work together. Reject an incompatible combination; label an unverified one conditional. A language name or successful development build is not compatibility proof.
+3. Check the complete candidate stack: framework and required features, libraries, serialization/reflection, authentication, native extensions, runtime, database driver, CPU/OS, persistence, proxy and deployment must work together. Reject an incompatible combination; label an unverified one conditional. A language name or successful development build is not compatibility proof. Read [decision-guide.md](references/decision-guide.md) when a candidate changes the language, runtime, database or deployment model.
 4. Use the measurement definitions and compact report in [report.md](references/report.md). Reuse existing evidence and behavior cases. If measurements are missing, give a conditional comparison and the smallest useful verification plan; do not invent benchmark results or numeric savings.
 5. Recommend the best-supported option for its cost and requirements, including what to retain, scale triggers and a staged migration with success criteria and rollback boundaries. A proposed PostgreSQL path remains planned until exercised on representative data and PostgreSQL itself.
 
 ## Load only relevant references
 
-- [decision-guide.md](references/decision-guide.md): requirements, bottleneck diagnosis, compatibility, language engineering guidance, database and native deployment considerations. Includes attributed Project-Foundations guidance without requiring its plugin or tool suites.
+- [decision-guide.md](references/decision-guide.md): read when a candidate changes the language, runtime, database or deployment model. Covers requirements, bottleneck diagnosis, compatibility, language engineering guidance, database and native deployment considerations. Includes attributed Project-Foundations guidance without requiring its plugin or tool suites.
 - Desktop/server track references own application-specific checks and route to suitable alternatives; do not load the other track unless the system has those components.
 - [alternatives.md](references/alternatives.md): browser/server replacement candidates, when relevant to the server track.
 - [hosting.md](references/hosting.md): server deployment models, cost components and historical price research when hosting matters. Refresh official prices, market, tax basis, contract/renewal and stock before current recommendations. Check existing capacity first.
