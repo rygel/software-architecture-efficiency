@@ -1,7 +1,7 @@
 ---
 name: architecture-efficiency
 metadata:
-  version: "1.3.0"
+  version: "1.4.0"
 description: Use when reviewing or comparing a software architecture for RAM, CPU, speed, hosting cost or operational simplicity, including oversized stacks, Electron, Tauri or other WebView desktop apps, removing Docker, Redis or other services, deciding whether to rewrite a slow or memory-heavy application in another language or toolkit, SQLite versus PostgreSQL, and choosing a host. Not for ordinary feature work, debugging, writing Dockerfiles or carrying out a migration.
 ---
 
@@ -38,4 +38,5 @@ Produce an evidence-backed comparison of the current architecture and practical 
 - Separate compilation, packaging and memory management. Go and .NET Native AOT can produce native executables while retaining runtime services such as garbage collection; native does not guarantee low RAM or high throughput.
 - Evaluate the SQLite writer queue, locality, durability and recovery. WAL does not create multiple simultaneous writers. Do not treat an ORM as proof of PostgreSQL compatibility.
 - Use measured, published, estimated and unknown evidence labels. Documentation establishes capabilities, not workload speedups. Cost savings require a real plan or usage change with equivalent service requirements.
+- Write every server size, memory or CPU target, price and saving in one of two shapes. With a source: "<figure> (<measurement of this system, dated official page, or calculation from supplied figures>)". Without one: "<item>: unknown until <named measurement or page>", for example "server size: unknown until peak memory of each process is measured" or "monthly cost: unknown until the provider's current price page is checked". A figure appears only in the first shape; the shapes apply inside a recommendation too.
 - Keep analysis within scope: do not implement a rewrite, provision hosting or change production merely to complete a comparison. Bound any justified experiment and follow the repository's existing check policy.
